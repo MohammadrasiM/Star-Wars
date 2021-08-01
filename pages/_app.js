@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import { Spin } from "antd";
 import Link from "next/link";
 import SEO from "./SEO";
-
+import Script from "next/script";
 function MyApp({ Component, pageProps }) {
   const rout = useRouter();
   const [loading, setLoading] = useState(false);
@@ -24,34 +24,35 @@ function MyApp({ Component, pageProps }) {
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
         crossOrigin="anonymous"
       />
-      <script
+      <Script src="https://third-party-script.js"></Script>
+      <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossOrigin="anonymous"
-      ></script>
+      ></Script>
 
-      <script
+      <Script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"
-      ></script>
-      <script
+      ></Script>
+      <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"
-      ></script>
-      <script
+      ></Script>
+      <Script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
         integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
         crossorigin="anonymous"
-      ></script>
-      <script type="text/javascript" src="/dist/js/vendor.min.js"></script>
-      <script
+      ></Script>
+      <Script type="text/javascript" src="/dist/js/vendor.min.js"></Script>
+      <Script
         type="text/javascript"
         src="https://cdn.turbo360-dev.com/dist/turbo.min.js"
-      ></script>
-      <script type="text/javascript" src="/dist/bundle/commons.js"></script>
-      <script type="text/javascript" src="/dist/bundle/app.js"></script>
+      ></Script>
+      <Script type="text/javascript" src="/dist/bundle/commons.js"></Script>
+      <Script type="text/javascript" src="/dist/bundle/app.js"></Script>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link href="/">
