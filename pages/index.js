@@ -10,7 +10,7 @@ export default function Home({ games }) {
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
             {games?.map((g) => (
-              <div className="col">
+              <div key={g.sys.id} className="col">
                 {" "}
                 <div className="card shadow-sm h-100">
                   <Link href={`/games/${g.sys.id}`}>
