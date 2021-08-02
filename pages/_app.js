@@ -8,6 +8,7 @@ import { Spin } from "antd";
 import Link from "next/link";
 import SEO from "./SEO";
 import Script from "next/script";
+import "../pages/creadits/starwars.css";
 function MyApp({ Component, pageProps }) {
   const rout = useRouter();
   const [loading, setLoading] = useState(false);
@@ -96,6 +97,11 @@ function MyApp({ Component, pageProps }) {
                   <a className="nav-link">Series</a>
                 </li>
               </Link>
+              <Link href="/creadits">
+                <li className="nav-item">
+                  <a className="nav-link">Creadits</a>
+                </li>
+              </Link>
             </ul>
             <form className="d-flex">
               <input
@@ -111,11 +117,14 @@ function MyApp({ Component, pageProps }) {
           </div>
         </div>
       </nav>
-      <SEO
-        title={pageProps?.seo?.title}
-        description={pageProps?.seo?.description}
-      />
-      <Component {...pageProps} />
+      <body>
+        {" "}
+        <SEO
+          title={pageProps?.seo?.title}
+          description={pageProps?.seo?.description}
+        />
+        <Component {...pageProps} />
+      </body>
     </Spin>
   );
 }
