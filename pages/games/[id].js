@@ -1,11 +1,19 @@
 import contentful from "../../contentful";
 import { Player } from "video-react";
 import React from "react";
+import ReactAudioPlayer from "react-audio-player";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 export default function Games({ game }) {
   console.log(game);
+  const [state, setState] = React.useState(false);
   return (
     <div>
+      <ReactAudioPlayer
+        preload="auto"
+        muted={state}
+        src={game?.fields?.audio}
+        autoPlay
+      />
       <p style={{ fontWeight: "bold", fontSize: "large" }}>
         {game?.fields?.title}
       </p>
@@ -38,11 +46,13 @@ export default function Games({ game }) {
           </div>
         </section>{" "}
       </body>
-      <Player
-        playsInline
-        poster={game?.fields?.poster?.fields?.file?.url}
-        src={game?.fields?.trailerurl?.content[0]?.content[0]?.value}
-      />
+      <div onClick={() => setState(true)}>
+        <Player
+          playsInline
+          poster={game?.fields?.poster?.fields?.file?.url}
+          src={game?.fields?.trailerurl?.content[0]?.content[0]?.value}
+        />
+      </div>
     </div>
   );
 }

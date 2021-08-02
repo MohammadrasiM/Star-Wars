@@ -8,7 +8,7 @@ const { Meta } = Card;
 export default function movie({ movies }) {
   console.log(movies);
   return (
-    <div>
+    <div style={{ padding: "0 50px" }}>
       {/* {movies.map((movie) => (
         <Link key={movie.id} href={`/movies/${movie.id}`}>
           <a>

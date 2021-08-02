@@ -1,13 +1,22 @@
 import contentful from "../../contentful";
 import { Player } from "video-react";
+import ReactAudioPlayer from "react-audio-player";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-export default function movies({ movie }) {
+import React from "react";
+export default function Movies({ movie }) {
   console.log(movie);
+  const [state, setState] = React.useState(false);
   return (
     <div>
-      <audio autoPlay>
+      <ReactAudioPlayer
+        preload="auto"
+        muted={state}
+        src={movie?.fields?.audio}
+        autoPlay
+      />
+      {/* <audio autoPlay>
         <source src={movie?.fields?.audio} type="audio/mpeg" />
-      </audio>
+      </audio> */}
       <p style={{ fontWeight: "bold", fontSize: "large" }}>
         {movie?.fields?.title}
       </p>
@@ -39,11 +48,13 @@ export default function movies({ movie }) {
           </div>
         </section>{" "}
       </body>
-      <Player
-        playsInline
-        poster={movie?.fields?.poster?.fields?.file?.url}
-        src={movie?.fields?.trailer?.content[0]?.content[0]?.value}
-      />
+      <div onClick={() => setState(true)}>
+        <Player
+          playsInline
+          poster={movie?.fields?.poster?.fields?.file?.url}
+          src={movie?.fields?.trailer?.content[0]?.content[0]?.value}
+        />
+      </div>
     </div>
   );
 }
