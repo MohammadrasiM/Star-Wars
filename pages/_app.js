@@ -4,21 +4,100 @@ import "../styles/globals.css";
 import "../pages/some.css";
 import router, { useRouter } from "next/router";
 import "antd/dist/antd.css";
-import { Spin } from "antd";
+import { Col, Row, Spin } from "antd";
 import Link from "next/link";
 import SEO from "./SEO";
 import Script from "next/script";
 import "../pages/creadits/starwars.css";
+import { Progress } from "antd";
+import ReactAudioPlayer from "react-audio-player";
+
 function MyApp({ Component, pageProps }) {
   const rout = useRouter();
+  const [state, setState] = React.useState(false);
   const [loading, setLoading] = useState(false);
+  const [percent, setPercent] = useState(30);
+  const [muted, setMuted] = useState(true);
   useEffect(() => {
-    router.events.on("routeChangeStart", () => setLoading(true));
-    router.events.on("routeChangeComplete", () => setLoading(false));
+    router.events.on("routeChangeStart", () => {
+      setLoading(true);
+      setState(false);
+    });
+    router.events.on("routeChangeComplete", () => {
+      setPercent(100);
+      setTimeout(() => {
+        setLoading(false);
+        setState(true);
+      }, 200);
+    });
   });
-
+  useEffect(() => {
+    if (loading) {
+      setPercent(30);
+      const interval = setInterval(() => {
+        setPercent((value) => (value < 90 ? value + 10 : value));
+      }, 300);
+      return () => clearInterval(interval);
+    }
+    setPercent(30);
+  }, [loading]);
   return (
-    <Spin spinning={loading}>
+    <>
+      {loading && (
+        <Row
+          style={{
+            backgroundColor: "#f8f9fa",
+          }}
+        >
+          <Col xl={1} xs={4} sm={3} md={3}>
+            {" "}
+            <img
+              style={{
+                position: "absolute",
+                width: "100px",
+                height: "35px",
+                backgroundColor: "#f8f9fa",
+                zIndex: "1000",
+                top: "-10",
+              }}
+              src="https://p.kindpng.com/picc/s/235-2353764_star-wars-lightsaber-laser-sword-free-photo-star.png"
+              alt="lightsaber"
+            />
+          </Col>
+          <Col xl={23} xs={20} sm={21} md={21}>
+            <Progress
+              status="exception"
+              strokeWidth="12px"
+              style={{
+                position: "relative",
+                display: "inline-flex",
+                // width: "1112",
+                backgroundColor: "#f8f9fa",
+                zIndex: "5",
+
+                background:
+                  "-webkit-linear-gradient(top, rgba(229, 17, 21, 1) 0%, rgba(254, 254, 254, 1) 30%, rgba(254, 254, 254, 1) 0%, rgba(254, 254, 254, 1) 60%, rgba(229, 17, 21, 1) 100%)",
+                borderRadius: "0 12px 12px 0",
+                WebkitBoxShadow: "0px 0px 8px 2px rgba(255,56,56,1)",
+                MozBoxShadow: "0px 0px 8px 2px rgba(255,56,56,1)",
+                boxShadow: "0px 0px 8px 2px rgba(255,56,56,1)",
+              }}
+              percent={percent}
+              showInfo={false}
+            >
+              {" "}
+            </Progress>
+            {muted && (
+              <ReactAudioPlayer
+                preload="auto"
+                muted={state}
+                src="http://soundfxcenter.com/movies/star-wars/8d82b5_Lightsaber_Igniting_Sound_Effect.mp3"
+                autoPlay
+              />
+            )}
+          </Col>
+        </Row>
+      )}
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -31,7 +110,6 @@ function MyApp({ Component, pageProps }) {
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossOrigin="anonymous"
       ></Script>
-
       <Script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -99,6 +177,7 @@ function MyApp({ Component, pageProps }) {
               </Link>
               <Link href="/creadits">
                 <li className="nav-item">
+                  {" "}
                   <a className="nav-link">Creadits</a>
                 </li>
               </Link>
@@ -125,7 +204,23 @@ function MyApp({ Component, pageProps }) {
         />
         <Component {...pageProps} />
       </body>
-    </Spin>
+      <footer className="page-footer font-small white">
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            onClick={() => {
+              muted ? setMuted(false) : setMuted(true);
+            }}
+          />
+          <label className="form-check-label">Loading sound Effect</label>
+        </div>
+        <div className="footer-copyright text-center py-3">
+          © 2021 Copyright:
+          <a href="https://github.com/MohammadrasiM">SMRM</a>
+        </div>
+      </footer>
+    </>
   );
 }
 
