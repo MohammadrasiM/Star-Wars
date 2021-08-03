@@ -14,7 +14,7 @@ import ReactAudioPlayer from "react-audio-player";
 
 function MyApp({ Component, pageProps }) {
   const rout = useRouter();
-  const [state, setState] = React.useState(false);
+  const [state, setState] = useState(false);
   const [loading, setLoading] = useState(false);
   const [percent, setPercent] = useState(30);
   const [muted, setMuted] = useState(true);
@@ -91,10 +91,11 @@ function MyApp({ Component, pageProps }) {
               <ReactAudioPlayer
                 preload="auto"
                 muted={state}
-                src="http://soundfxcenter.com/movies/star-wars/8d82b5_Lightsaber_Igniting_Sound_Effect.mp3"
+                src="https://www.myinstants.com/media/sounds/sithignition.mp3"
                 autoPlay
               />
             )}
+            {/*    http://soundfxcenter.com/movies/star-wars/8d82b5_Lightsaber_Igniting_Sound_Effect.mp3*/}
           </Col>
         </Row>
       )}
