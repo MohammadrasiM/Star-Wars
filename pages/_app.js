@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
               style={{
                 position: "absolute",
                 width: "100px",
-                height: "35px",
+                height: "40px",
                 backgroundColor: "#f8f9fa",
                 zIndex: "1000",
                 top: "-10",
@@ -69,6 +69,7 @@ function MyApp({ Component, pageProps }) {
               status="exception"
               strokeWidth="12px"
               style={{
+                paddingTop: "5px",
                 position: "relative",
                 display: "inline-flex",
                 // width: "1112",
@@ -171,7 +172,7 @@ function MyApp({ Component, pageProps }) {
                 </li>
               </Link>
 
-              <Link href="/">
+              <Link href="/series">
                 <li className="nav-item">
                   <a className="nav-link">Series</a>
                 </li>
@@ -183,7 +184,7 @@ function MyApp({ Component, pageProps }) {
                 </li>
               </Link>
             </ul>
-            <form className="d-flex">
+            {/* <form className="d-flex">
               <input
                 className="form-control me-2"
                 type="search"
@@ -192,8 +193,8 @@ function MyApp({ Component, pageProps }) {
               />
               <button className="btn btn-outline-success" type="submit">
                 Search
-              </button>
-            </form>
+              </button> */}
+            {/* </form> */}
           </div>
         </div>
       </nav>
