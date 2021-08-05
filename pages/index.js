@@ -55,9 +55,10 @@ export default function Home({ games }) {
     </>
   );
 }
-export async function getServerSideProps() {
+
+export async function getStaticProps() {
   const result = await contentful.getEntries({
     content_type: "games",
   });
-  return { props: { games: result.items } };
+  return { props: { games: result.items }, revalidate: 10 };
 }

@@ -57,5 +57,6 @@ export async function getStaticProps() {
       movies: result.items,
       seo: { title: "STW series", description: "Star Wars series" },
     },
+    revalidate: 10,
   };
 }
