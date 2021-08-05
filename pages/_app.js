@@ -11,7 +11,7 @@ import Script from "next/script";
 import "../pages/creadits/starwars.css";
 import { Progress } from "antd";
 import ReactAudioPlayer from "react-audio-player";
-
+import "../styles/stars.css";
 function MyApp({ Component, pageProps }) {
   const rout = useRouter();
   const [state, setState] = useState(false);
@@ -199,7 +199,6 @@ function MyApp({ Component, pageProps }) {
         </div>
       </nav>
       <body>
-        {" "}
         <SEO
           title={pageProps?.seo?.title}
           description={pageProps?.seo?.description}
@@ -221,6 +220,9 @@ function MyApp({ Component, pageProps }) {
           © 2021 Copyright:
           <a href="https://github.com/MohammadrasiM">SMRM</a>
         </div>
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
       </footer>
     </>
   );
